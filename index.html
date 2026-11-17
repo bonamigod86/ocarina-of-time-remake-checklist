@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Ocarina of Time 100% — Checklist</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" id="sidebar" aria-label="Navegação do checklist">
+    <div class="brand">
+      <div class="triforce" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="brand-text">
+        <strong>Ocarina of Time</strong>
+        <span data-i18n="brandSub">100% Checklist · Remake</span>
+      </div>
+      <button class="side-close" id="sideClose" aria-label="Fechar menu">×</button>
+    </div>
+
+    <div class="side-progress">
+      <div class="side-progress-top">
+        <span data-i18n="progressLabel">Progresso geral</span>
+        <strong id="sidePct">0%</strong>
+      </div>
+      <div class="bar"><i id="sideBar"></i></div>
+      <div class="side-progress-sub"><span id="sideCount">0</span><span id="sideLeft"></span></div>
+    </div>
+
+    <nav class="nav" id="nav"></nav>
+
+    <div class="side-actions">
+      <button class="btn ghost" id="exportBtn" data-i18n="exportBtn">Exportar progresso</button>
+      <button class="btn ghost" id="importBtn" data-i18n="importBtn">Importar progresso</button>
+      <input type="file" id="importFile" accept="application/json,.json" hidden>
+      <button class="btn danger" id="resetBtn" data-i18n="resetBtn">Zerar checklist</button>
+    </div>
+    <p class="credit" data-i18n-html="creditHtml">
+      Dados e screenshots do remake: Zelda Central e Z64Central.<br>
+      Conteúdo para uso pessoal. Nintendo / Zelda © Nintendo.
+    </p>
+  </aside>
+
+  <div class="backdrop" id="backdrop" hidden></div>
+
+  <div class="main">
+    <header class="hero">
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-controls="sidebar" aria-expanded="false">☰</button>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">The Legend of Zelda</p>
+          <h1>Ocarina of Time <em>100%</em></h1>
+          <p class="subtitle" data-i18n="subtitle">Nintendo Switch 2 · Remake 2026 · Checklist completo</p>
+          <div class="hero-chips">
+            <span><b id="chipSkull">0</b>/100 <span data-i18n="chipSkull">Skulltulas</span></span>
+            <span><b id="chipHearts">0</b>/44 <span data-i18n="chipHearts">corações</span></span>
+            <span><b id="chipDone">0</b>/253 <span data-i18n="chipDone">objetivos</span></span>
+          </div>
+        </div>
+        <div class="ring-wrap" aria-hidden="true">
+          <svg class="ring" viewBox="0 0 132 132">
+            <circle class="ring-bg" cx="66" cy="66" r="56"></circle>
+            <circle class="ring-fg" id="ringFg" cx="66" cy="66" r="56"></circle>
+          </svg>
+          <div class="ring-label">
+            <strong id="ringPct">0%</strong>
+            <span data-i18n="ringDone">completo</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-glow"></div>
+    </header>
+
+    <div class="toolbar">
+      <div class="search-wrap">
+        <span class="search-ico" aria-hidden="true">⌕</span>
+        <input id="search" type="search" placeholder="Buscar item, local ou requisito… (atalho: /)" autocomplete="off" aria-label="Buscar no checklist">
+        <button class="search-clear" id="searchClear" hidden aria-label="Limpar busca">×</button>
+      </div>
+      <div class="lang-switch" role="group" aria-label="Idioma / Language">
+        <button type="button" class="lang-btn active" data-lang="pt">PT-BR</button>
+        <button type="button" class="lang-btn" data-lang="en">ENG</button>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="photosToggle" checked>
+        <span data-i18n="photos">Fotos</span>
+      </label>
+      <label class="switch">
+        <input type="checkbox" id="hideDone">
+        <span data-i18n="hideDone">Ocultar concluídos</span>
+      </label>
+    </div>
+
+    <main id="sections" class="sections"></main>
+
+    <footer class="footer">
+      <p data-i18n="footer1">Feito para jogar offline. O progresso fica salvo neste navegador automaticamente.</p>
+      <p data-i18n="footer2">Fotos das Skulltulas, Pedaços de Coração e missões secundárias: Zelda Central. Dicas e dados: Zelda Central / Z64Central.</p>
+    </footer>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" hidden>
+  <div class="lightbox-panel" role="dialog" aria-modal="true" aria-labelledby="lbTitle">
+    <button class="lightbox-close" id="lbClose" aria-label="Fechar foto">×</button>
+    <div class="lightbox-img-wrap">
+      <img id="lbImg" alt="">
+    </div>
+    <div class="lightbox-info">
+      <div class="lightbox-heading">
+        <span class="skull-num" id="lbNum"></span>
+        <span class="age" id="lbAge"></span>
+      </div>
+      <h3 id="lbTitle"></h3>
+      <p class="lightbox-req" id="lbReq"></p>
+      <p class="lightbox-desc" id="lbDesc"></p>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="data.js"></script>
+<script src="data.en.hearts.js"></script>
+<script src="data.en.misc.js"></script>
+<script src="data.en.skulltulas.js"></script>
+<script src="data.en.sidequests.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
